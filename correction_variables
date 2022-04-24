@@ -1,0 +1,9 @@
+# corriger le variales a=-2..5 b=true c=false d=bonjour
+
+a = -2.5
+
+b = True
+
+c = False
+
+d = 'Bonjour tout le monde'
