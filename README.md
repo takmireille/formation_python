@@ -1,4 +1,4 @@
-Danss ce dossier  nous  avons :
-- les bases du languages python
-- les  base de redaction des codes en python
-- les exercices et TP
+Dans ce dossier  nous  avons :
+- les bases du language python
+- les  bases de redaction du code en python
+- les exercices et TPs
