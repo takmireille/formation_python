@@ -1,0 +1,4 @@
+--------- jeux "pierre-papier-ciseaux------
+
+1- acceuil dans l'environnement du jeu 
+ - etes-vous prets à defier le harsard? bien venue dans "chifoumi"
