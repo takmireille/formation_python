@@ -10,8 +10,7 @@ print("Bienvenu(e) au jeu de la piece contre le mur au sol ")
 def jouer():
   nb_joueurs = int(input("entrez le nombre de joueurs : "))
   if nb_joueurs < 2:
-    print("il faut au moins deux joueurs !")
-    return
+    input("Il faut au moins deux joueurs !. Entrez un nombre de joueurs > 1 :  ")
 #def pieces(): 
 jouer()
 j1_pieces = 5 
@@ -35,7 +34,7 @@ while j1_pieces > 0 and j2_pieces > 0:
   else:
    print("match nul")
 if j2_pieces == 0: print("le joueur 2 a perdu\n BRAVO JOUEUR 1 VOUS ETES LE GAGNANT DE LA PARTIE") 
- 
 else: 
  print("le joueur 1 a perdu\nBRAVO JOUEUR 2 VOUS ETES LE GAGNANT DE LA PARTIE")
+
 
