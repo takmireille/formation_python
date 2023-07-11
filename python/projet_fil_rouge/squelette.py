@@ -26,7 +26,6 @@ def create_directory_tree(root_dir, tree_structure):
 def create_groups(group_names):
     """
     Crée plusieurs groupes en utilisant la commande groupadd.
-
     """
     try:
         for group_name in group_names:
@@ -37,10 +36,7 @@ def create_groups(group_names):
     except IOError:
         print("Une erreur s'est produite lors de la création des groupes.")
 
-
 ###############################################################################################################################################
-import csv
-import subprocess
 def create_users(fichier_csv):
     try:
         with open(fichier_csv, 'r') as file:
@@ -51,21 +47,19 @@ def create_users(fichier_csv):
                 prenom = row['prenom'].lower()
                 groupe = row['groupe']
                 username = prenom[0].lower() + nom
-                password = "Toto"  # Mot de passe temporaire
                 try:
-                    subprocess.run(['useradd', '-m', '-p', password, '-G', groupe, username])
+                    os.system(f'sudo useradd -mG {groupe} ; passwd -e {username}')
                     print(f"L'utilisateur '{username}' a été créé avec succès.")
-                except :
+                except:
                     print(f"Erreur lors de la création de l'utilisateur '{username}'.")
     
     except PermissionError:
         print("Vous n'avez pas les permissions nécessaires.")
     except FileNotFoundError:
         print(f"Le fichier '{fichier_csv}' n'a pas été trouvé.")
-    
 
 ##################################################################################################################################################
-def permission(fichier_csv):
+def attribuer_droits(fichier_csv):
     try:
         with open(fichier_csv, 'r') as file:
             csv_reader = csv.DictReader(file)
@@ -73,13 +67,16 @@ def permission(fichier_csv):
                 folder_path = row['folder_path']
                 groupe_owner = row['groupe_owner']
                 rights = row['rights']
-
-                if folder_path and groupe_owner and rights:
-                    os.chmod(folder_path, int(rights, 8))
-                    print(f"Droits attribués au dossier '{folder_path}' : {rights}")
+                os.system(f"sudo chgrp -R {groupe_owner} {folder_path}")
+                os.system(f"sudo chmod -R {rights} {folder_path}")
+            
+                print(f"Droits attribués au dossier '{folder_path}' : {rights}")
     
-    except (PermissionError, FileNotFoundError) :
-        print(f"Erreur lors de l'attribution des droits ")
+    except (PermissionError, FileNotFoundError):
+        print("Erreur lors de l'attribution des droits")
+    
+    except :
+        print("Une erreur s'est produite")
 
 ###########################################################################################################################################
 # EXECUTION
@@ -105,4 +102,4 @@ fichier_csv = './user.csv'
 create_users(fichier_csv)
 
 fichier_csv = './folder.csv'
-permission(fichier_csv)
+attribuer_droits(fichier_csv)
