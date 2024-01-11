@@ -10,10 +10,7 @@ def installation_env():
         os.system("virtualenv -ppython3 venv")
         os.system("source venv/bin/activate") # activer l'environnement virtuel
         
-        #einstallation de l'environnment flask
-        os.system("pip install flask")
-        os.system("pip install flask-SQLAIchemy")
-        print("environnement flask installer avec susccès")
+        
     except Exception as e:
         print("une erreur s'est produite lors de la configuration de l'environnement virtuel")
         sys.exit(1)
@@ -21,4 +18,3 @@ def installation_env():
 
 installation_env()
 
-    
