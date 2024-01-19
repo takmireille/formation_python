@@ -1,5 +1,6 @@
 
 from flask import Flask, render_template
+from my_models import my_app  
 
 app = Flask(__name__)
 
@@ -10,6 +11,8 @@ def homepage():
         {"name": "Cyrille", "level": 7},
         {"name": "Rene", "level": 8}
     ]
-    return render_template('hello.html', name="Mireille", apps=apps)
+    return render_template('hello.html', 
+                           name="Mireille", 
+                           apps=apps)
 
-    
+
